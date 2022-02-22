@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
-    "instagram-private-api": "^1.45.3"
+    "instagram-private-api": "^1.45.3",
+    "node-schedule": "^2.1.0"
   }
 }
