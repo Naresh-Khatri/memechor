@@ -1,4 +1,3 @@
-import axios from 'axios'
+import chor from './memeChor.js'
 
-axios.get('https://i.imgur.com/J9FPSME.jpg')
-.then(res=>console.log(res))
+console.log(await chor())

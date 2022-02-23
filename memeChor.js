@@ -6,7 +6,7 @@ export default async function chor() {
   );
 
   let randNum = getRandomInt(0, postsJSON.data.data.children.length - 1);
-
+  // console.log("got data: ", postsJSON.data.data.children[randNum].data);
   //only allow jpg for now
   while (
     postsJSON.data.data.children[randNum].data.url_overridden_by_dest.slice(
@@ -25,7 +25,7 @@ export default async function chor() {
     photoURL: postsJSON.data.data.children[randNum].data.url_overridden_by_dest,
     caption: postsJSON.data.data.children[randNum].data.title,
   };
-  console.log(post);
+  // console.log(post);
   return post;
 }
 
