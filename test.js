@@ -1,3 +1,9 @@
-import chor from './memeChor.js'
+import fs from "fs";
 
-console.log(await chor())
+fs.readFile("./test.json", "utf-8", (err, data) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log("data: ", data);
+});

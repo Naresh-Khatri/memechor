@@ -1,34 +1,28 @@
-import axios from "axios";
+import fs from "fs";
 
-export default async function chor() {
-  let postsJSON = await axios.get(
-    "https://www.reddit.com/r/ProgrammerHumor/hot.json"
-  );
-
-  let randNum = getRandomInt(0, postsJSON.data.data.children.length - 1);
-  // console.log("got data: ", postsJSON.data.data.children[randNum].data);
-  //only allow jpg for now
-  while (
-    postsJSON.data.data.children[randNum].data.url_overridden_by_dest.slice(
-      -4
-    ) !== ".jpg"
-  ) {
-    console.log(
-      "not a jpg:",
-      postsJSON.data.data.children[randNum].data.url_overridden_by_dest.slice(
-        -4
-      )
-    );
-    randNum = getRandomInt(0, postsJSON.data.data.children.length - 1);
-  }
-  const post = {
-    photoURL: postsJSON.data.data.children[randNum].data.url_overridden_by_dest,
-    caption: postsJSON.data.data.children[randNum].data.title,
-  };
-  // console.log(post);
-  return post;
+export default function chor() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let posts = await fs.promises.readFile("./dailyPosts.json", "utf-8");
+      posts = JSON.parse(posts);
+      let i;
+      for (i = 0; i < posts.length; i++) {
+        if (posts[i].posted === false) {
+          posts[i].posted = true;
+          await fs.promises.writeFile(
+            "./dailyPosts.json",
+            JSON.stringify(posts)
+          );
+          resolve(posts[i]);
+          break;
+        }
+      }
+      if (i === posts.length) {
+        reject("no new memes");
+        return;
+      }
+    } catch (err) {
+      reject("error reading dailyPosts.json: ", err);
+    }
+  });
 }
-
-const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
