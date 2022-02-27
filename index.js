@@ -55,4 +55,4 @@ main();
 // }
 
 scheduleJob("*/30 * * * *", main);
-scheduleJob("0 0 * * *", getDailyMemes());
+scheduleJob("0 0 * * *", getDailyMemes);

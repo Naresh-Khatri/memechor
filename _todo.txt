@@ -1,0 +1,4 @@
+add a caption
+edit story before uploading
+store old posts in json
+avoid duplicate posts
