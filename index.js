@@ -27,12 +27,12 @@ async function main() {
     // publish chori ka meme
     publishResult = await ig.publish.photo({
       file: await getImgBuffer(post.photoURL),
-      caption: `${post.caption}\n.\n.\nOriginal post by ${post.author}: ${
+      caption: `${post.title}\n.\n.\nOriginal post by ${post.author}: ${
         post.link
       }\n.\n.\n${getRandomTagsString(30)}`,
     });
     if (publishResult.status === "ok") {
-      //get time 
+      //get time
       const date = new Date();
       const time = `${date.getHours()}:${date.getMinutes()}`;
       console.log("Published post✅ at", time);
