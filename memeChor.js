@@ -18,7 +18,7 @@ export default function chor() {
         }
       }
       if (i === posts.length) {
-        reject("no new memes");
+        reject({ message: "no new memes" });
         return;
       }
     } catch (err) {
