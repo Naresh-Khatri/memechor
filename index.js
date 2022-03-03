@@ -50,7 +50,11 @@ async function main() {
     //   console.log("Published story✅");
     // }
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
+    if (err.message == "Image probably removed") {
+      console.log("trying again...");
+      main();
+    }
   }
 }
 // for (let i = 0; i < 20; i++) {
@@ -58,4 +62,4 @@ main();
 // }
 
 scheduleJob("*/30 * * * *", main);
-scheduleJob("0 0 * * *", getDailyMemes);
+scheduleJob("0 */12 * * *", getDailyMemes);
