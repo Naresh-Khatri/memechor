@@ -19,7 +19,7 @@ export default async function getDailyMemes() {
     const filteredPosts = getFilteredPostsWithJpg(posts);
     filteredPosts.forEach((post) => {
       //dont want to add duplicates
-      if (uniquePosts.find((post) => post.photoURL == post.data ?? url)) return;
+      if (uniquePosts.includes(post)) return;
       //get todays date
       const date = new Date();
       const todaysDate = `${date.getFullYear()}-${
@@ -33,7 +33,7 @@ export default async function getDailyMemes() {
         author: post.data.author,
         link: "http://reddit.com" + post.data.permalink,
         addedData: todaysDate,
-        posted:false
+        posted: false,
       };
       uniquePosts.push(newPost);
     });
@@ -42,13 +42,18 @@ export default async function getDailyMemes() {
   let prevPosts = await fs.promises.readFile("postsCollection.json", "utf8");
   prevPosts = JSON.parse(prevPosts);
   uniquePosts.forEach((uniquePost) => {
-    if (prevPosts.find((prevPost) => prevPost.id == uniquePost.id)) return;
+    if (prevPosts.find((prevPost) => prevPost.id == uniquePost.id)){
+      // console.log(uniquePost.photoURL)
+      return;
+    } 
     prevPosts.push(uniquePost);
   });
   //write to file
   fs.writeFile("postsCollection.json", JSON.stringify(prevPosts), (err) => {
     if (err) console.log(err);
-    console.log("NEW maymayzz added!");
+    console.log(
+      `${uniquePosts.length} NEW maymayzz added! 🎉\nTotal ${prevPosts.length} in collection`
+    );
   });
 }
 
