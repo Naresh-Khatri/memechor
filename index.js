@@ -53,7 +53,7 @@ async function main() {
     console.log(err.message);
     if (err.message == "Image probably removed") {
       console.log("trying again...");
-      main();
+      // main();
     }
   }
 }
@@ -61,5 +61,5 @@ async function main() {
 main();
 // }
 
-scheduleJob("*/30 * * * *", main);
+scheduleJob("* * * * *", main);
 scheduleJob("0 */12 * * *", getDailyMemes);
