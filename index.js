@@ -29,7 +29,7 @@ async function main() {
       file: await getImgBuffer(post.photoURL),
       caption: `${post.title}\n.\n.\nOriginal post by ${post.author}: ${
         post.link
-      }\n.\n.\n${getRandomTagsString(30)}`,
+      }\n.\n.\n${getRandomTagsString(25)}`,
     });
     if (publishResult.status === "ok") {
       //get time
@@ -61,5 +61,5 @@ async function main() {
 main();
 // }
 
-scheduleJob("* * * * *", main);
-scheduleJob("0 */12 * * *", getDailyMemes);
+scheduleJob("*/30 * * * *", main);
+scheduleJob("0 */6* * *", getDailyMemes);
