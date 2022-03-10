@@ -59,6 +59,7 @@ async function main() {
 }
 // for (let i = 0; i < 20; i++) {
 main();
+getDailyMemes()
 // }
 
 scheduleJob("*/30 * * * *", main);

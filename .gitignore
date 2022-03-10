@@ -1,2 +1,6 @@
 node_modules
 .env
+postsCollection.json
+test.js
+tags.js
+_todo.txt
