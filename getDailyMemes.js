@@ -33,7 +33,7 @@ export default async function getDailyMemes() {
         photoURL: post.data.url,
         title: post.data.title,
         author: post.data.author,
-        link: "http://reddit.com" + post.data.permalink,
+        link: "https://reddit.com" + post.data.permalink,
         addedData: todaysDate,
         posted: false,
       };
