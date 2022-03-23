@@ -63,4 +63,4 @@ getDailyMemes()
 // }
 
 scheduleJob("*/30 * * * *", main);
-scheduleJob("0 */6* * *", getDailyMemes);
+scheduleJob("0 */6 * * *", getDailyMemes);
